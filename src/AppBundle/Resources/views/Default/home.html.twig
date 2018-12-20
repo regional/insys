@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block ayuda_menu %}active{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/carousel.css') }}">
+{% endblock %}
+
+{% block slider %}
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="first-slide" src="{{ asset('assets/img/1.jpg') }}" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption text-left">
+                        <h1>Bienvenido a Sistema Adsjunior.</h1>
+                        <p>Sistema de creacion de plataforma ads anuncio RD.</p>
+                        <p><a class="btn btn-lg btn-primary" href="{{ path('registro') }}" role="button">Registrarse</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="second-slide" src="{{ asset('assets/img/2.jpg') }}" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="third-slide" src="{{ asset('assets/img/3.jpg') }}" alt="Third slide">
+                <div class="container">
+                    <div class="carousel-caption text-left">
+                        <h1>Ya tienes cuenta?</h1>
+                        <p>Inicia sesión y comienza a disfrutar!</p>
+                        <p><a class="btn btn-lg btn-primary" href="{{ path('login') }}" role="button">Iniciar Sesión</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+{% endblock %}
+
+{% block body %}
+<div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="circulo">
+                <spam id="icono"><i class="far fa-edit"></i></spam>
+            </div>
+            <br>
+            <h2>Crea</h2>
+            <p>Crear, facilmente, una solicitud sobre la insidencia que deseas resolver.</p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="circulo">
+                <spam id="icono"><i class="far fa-check-circle"></i></spam>
+            </div>
+            <br>
+            <h2>Soluciona</h2>
+            <p>En Insys, puedes utilizar tus conocimientos para resolver insidencias de los demas usuarios.</p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="circulo">
+                <spam id="icono"><i class="fas fa-comments"></i></spam>
+            </div>
+            <br>
+            <h2>Amigos</h2>
+            <p>A medida que vas creciendo en la comunidad, puedes ir conociendo nuevos amigos.</p>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+</div>
+
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+{% endblock %}
+

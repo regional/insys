@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EstadoSolicitud
+ * estado_solicitud
  *
  * @ORM\Table(name="estado_solicitud")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EstadoSolicitudRepository")
@@ -22,20 +22,6 @@ class EstadoSolicitud
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="solicitudid", type="integer")
-     */
-    private $solicitudid;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="usuarioid", type="integer")
-     */
-    private $usuarioid;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="fecha", type="date")
@@ -43,12 +29,20 @@ class EstadoSolicitud
     private $fecha;
 
     /**
-     * @var string
+     * @var Solicitud
      *
-     * @ORM\Column(name="estado", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="CampoAfin", inversedBy="camposAfines")
      */
-    private $estado;
 
+    private $solicitud;
+
+    /**
+     * @var Estatus
+     *
+     * @ORM\ManyToOne(targetEntity="Estatus", inversedBy="estadoSolicitud")
+     */
+
+    private $estado;
 
     /**
      * Get id
@@ -61,51 +55,51 @@ class EstadoSolicitud
     }
 
     /**
-     * Set solicitudid
+     * Set solicitudId
      *
-     * @param integer $solicitudid
+     * @param integer $solicitudId
      *
      * @return estadoSolicitud
      */
-    public function setSolicitudid($solicitudid)
+    public function setSolicitudId($solicitudId)
     {
-        $this->solicitudid = $solicitudid;
+        $this->solicitudId = $solicitudId;
 
         return $this;
     }
 
     /**
-     * Get solicitudid
+     * Get solicitudId
      *
      * @return int
      */
-    public function getSolicitudid()
+    public function getSolicitudId()
     {
-        return $this->solicitudid;
+        return $this->solicitudId;
     }
 
     /**
-     * Set usuarioid
+     * Set usuarioId
      *
-     * @param integer $usuarioid
+     * @param integer $usuarioId
      *
      * @return estadoSolicitud
      */
-    public function setUsuarioid($usuarioid)
+    public function setUsuarioId($usuarioId)
     {
-        $this->usuarioid = $usuarioid;
+        $this->usuarioId = $usuarioId;
 
         return $this;
     }
 
     /**
-     * Get usuarioid
+     * Get usuarioId
      *
      * @return int
      */
-    public function getUsuarioid()
+    public function getUsuarioId()
     {
-        return $this->usuarioid;
+        return $this->usuarioId;
     }
 
     /**

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crear Estado{% endblock %}
+
+{% block Estados %}active{% endblock %}
+
+{% block body %}
+    <br>
+    <h2>Crear Estado</h2>
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Usuarios{% endblock %}
+
+{% block usuario_menu %}active{% endblock %}
+
+{% block body %}
+    <h1>Lista de Usuarios </h1>
+    {% for usuario in usuarios %}
+        <li>{{ usuario.nombre }} - {{ usuario.email }}</li>
+    {% endfor %}
+
+    {% for campoafin in camposafines %}
+        <li>{{ campoafin.nombre }}</li>
+    {% endfor %}
+{% endblock %}
+

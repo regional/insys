@@ -9,10 +9,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Usuario
  *
- * @ORM\Table(name="usuario",uniqueConstraints={@ORM\UniqueConstraint(name="email_idx", columns={"email"})})
+ * @ORM\Table(name="usuario",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="email_idx", columns={"email"})}
+ *     )
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UsuarioRepository")
  */
-class Usuario implements UserInterface, \Serializable
+class Usuario implements UserInterface,  \Serializable
 {
     /**
      * @var int
@@ -58,12 +60,29 @@ class Usuario implements UserInterface, \Serializable
      */
     private $habilitado;
 
-
-    /**
-     * @var ArrayCollection
+    /*
+     * @var
      * @ORM\OneToMany(targetEntity="Solicitud", mappedBy="usuarioSolicitante")
      */
+
     private $misSolicitudes;
+
+    /*
+     * @var
+     * @ORM\OneToMany(targetEntity="UsuarioCamposAfines", mappedBy="campoAfin")
+     */
+
+    private $camposAfines;
+
+    /*
+     * @var
+     * @ORM\OneToMany(targetEntity="SolicitudNota", mappedBy="Usuario")
+     */
+
+    private $usuarioNota;
+
+
+
 
     /**
      * Usuario constructor.
@@ -74,7 +93,43 @@ class Usuario implements UserInterface, \Serializable
         $this->misSolicitudes = new ArrayCollection();
     }
 
+    /*
+     * @var
+     * @ORM\OneToMany(targetEntity="Solicitud", mappedBy="usuarioAsignado")
+     */
 
+    private $misAsignaciones;
+
+    /**
+     * Usuario constructor.
+     * @param int $id
+     */
+    public function __construct2()
+    {
+        $this->usuarioAsignado = new ArrayCollection();
+    }
+
+    /*
+     * @var
+     * @ORM\OneToMany(targetEntity="usuario_campos_afines", mappedBy="usuarioId")
+     */
+
+    private $campoAfin;
+
+    /**
+     * Usuario constructor.
+     * @param int $id
+     */
+    public function __construct3()
+    {
+        $this->usuarioId = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -105,7 +160,7 @@ class Usuario implements UserInterface, \Serializable
     }
 
     /**
-     * Set imail
+     * Set email
      *
      * @param string $email
      *
@@ -119,7 +174,7 @@ class Usuario implements UserInterface, \Serializable
     }
 
     /**
-     * Get imail
+     * Get email
      *
      * @return string
      */
@@ -212,7 +267,8 @@ class Usuario implements UserInterface, \Serializable
             $this->id,
             $this->nombre,
             $this->email
-        ]);
+    ]);
+        // TODO: Implement serialize() method.
     }
 
     /**
@@ -230,7 +286,8 @@ class Usuario implements UserInterface, \Serializable
             $this->id,
             $this->nombre,
             $this->email
-            ) = unserialize($serialized,['allowed_classes' =>false]);
+            ) = unserialize($serialized, ['allowed_classes' => false]);
+        // TODO: Implement unserialize() method.
     }
 
     /**
@@ -250,6 +307,7 @@ class Usuario implements UserInterface, \Serializable
     public function getRoles()
     {
         return ["USER_ROLE"];
+        // TODO: Implement getRoles() method.
     }
 
     /**
@@ -262,6 +320,7 @@ class Usuario implements UserInterface, \Serializable
     public function getSalt()
     {
         return null;
+        // TODO: Implement getSalt() method.
     }
 
     /**
@@ -272,6 +331,7 @@ class Usuario implements UserInterface, \Serializable
     public function getUsername()
     {
         return $this->email;
+        // TODO: Implement getUsername() method.
     }
 
     /**
@@ -284,6 +344,5 @@ class Usuario implements UserInterface, \Serializable
     {
         // TODO: Implement eraseCredentials() method.
     }
-
 }
 

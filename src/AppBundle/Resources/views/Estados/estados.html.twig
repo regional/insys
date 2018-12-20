@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Estados{% endblock %}
+
+{% block Estados %}active{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <br>
+        <h4>Lista de Estados</h4>
+        <a href="{{ path('nuevo_estado') }}" class="btn btn-primary">Crear Estado</a>
+        <br><br>
+        <table class="table table-hover">
+            <thead>
+            <tr class="table-info">
+                <th scope="col">ID</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set contador = 0 %}
+            {% for estado in estados %}
+                {% set contador = contador + 1 %}
+                <tr>
+                    <td>
+                        {{ estado.id }}
+                    </td>
+                    <td>
+                        {{ estado.descripcion }}
+                    </td>
+                    <td>
+                        <a href="{{ path('edit_nuevo_estado', {id:estado.id}) }}" style="cursor:pointer;" class="btn btn-outline-primary">Editar</a>
+                        <a href="{{ path('delete_estados', {id:estado.id}) }}" style="cursor:pointer;" class="btn btn-outline-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            <tr>
+                <td colspan="3">
+                    <b>Cantidad de Estados {{ contador }}</b>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

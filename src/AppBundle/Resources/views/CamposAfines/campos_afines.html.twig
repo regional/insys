@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Campos Afines{% endblock %}
+
+{% block CampoAfin %}active{% endblock %}
+
+{% block body %}
+<div class="container">
+    <br>
+    <h4>Lista de Campos Afines</h4>
+    <a href="{{ path('nuevo_campos_afines') }}" class="btn btn-primary">Crear Campo Afin</a>
+    <br><br>
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-info">
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set contador = 0 %}
+            {% for campo in camposafines %}
+                {% set contador = contador + 1 %}
+                <tr>
+                    <td>
+                        {{ campo.id }}
+                    </td>
+                    <td>
+                        {{ campo.nombre }}
+                    </td>
+                    <td>
+                        <a href="{{ path('edit_campos_afines', {id:campo.id}) }}" style="cursor:pointer;" class="btn btn-outline-primary">Editar</a>
+                        <a href="{{ path('delete_campos_afines', {id:campo.id}) }}" style="cursor:pointer;" class="btn btn-outline-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            <tr>
+                <td colspan="3">
+                    <b>Cantidad de Registros {{ contador }}</b>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

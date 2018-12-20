@@ -3,73 +3,42 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Usuario;
-use AppBundle\Entity\UsuarioCampoAfin;
 use AppBundle\Form\UsuarioType;
-use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Config\Definition\IntegerNode;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 class RegistroController extends Controller
 {
     /**
-     * @Route("/registrar", name="homepage")
+     * @Route("/registro", name="registro")
      */
-    public function usuarioAction(Request $request)
+    public function registroAction(Request $request, UserPasswordEncoderInterface $encoder)
     {
-        $usuario = new Usuario();
-        $usuario->setNombre("Pedro");
-        $usuario->setEmail("ver@gg.com");
-        $usuario->setApellido("Minaya");
-        $usuario->setPassword("wser123");
+        $usuario = new usuario();
+        $form = $this->createForm(UsuarioType::class, $usuario);
+
+#        $usuario->setNombre($form->get("nombre")->getData());
+#        $usuario->setApellido($form->get("apellido")->getData());
+#        $usuario->setEmail($form->get("email")->getData());
         $usuario->setHabilitado(true);
 
-
-        $form = $this->createFormBuilder($usuario)
-            ->add('Nombre', TextType::class)
-            ->add('Email', EmailType::class)
-            ->add('Apellido', TextType::class)
-            ->add('Password', PasswordType::class)
-            ->add('Guardar', SubmitType::class, array('label' => 'Guardar'))
-            ->getForm();
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $usuario = $form->getData();
-            $pasa = $this->getDoctrine() ->getManager();
-            $pasa->persist($usuario);
-            $pasa->flush();
+
+            $encoder = $encoder->encodePassword($usuario, $usuario->getPassword());
+            $usuario ->setPassword($encoder);
+
+            $manejadorDb = $this->getDoctrine() ->getManager();
+            $manejadorDb->persist($usuario);
+            $manejadorDb->flush();
 
             return $this->redirectToRoute('login');
         }
-            return $this->render('security/registro.html.twig', array(
-                'form' => $form->createView(),));
-
-
-
-    }
-        /**
-         * @Route("/{id}", name="homepage2")
-         *
-         * @param Request $request
-         * @param Usuario $usuario
-         */
-        public function ver_usuarioAction(Request $request, Usuario $usuario)
-
-    {
-
         // replace this example code with whatever you need
-        return $this->render('@App/Usuario/ver_usuario.html.twig',[
-            "usuario" => $usuario
-        ]);
-
-
+        return $this->render('@App/Usuario/registro.html.twig',
+            array("form"=>$form->createView()));
     }
 
 

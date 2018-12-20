@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crear Campo Afin{% endblock %}
+
+{% block CampoAfin %}active{% endblock %}
+
+{% block body %}
+    <br>
+    <h2>Crear Campo Afin</h2>
+
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form.nombre) }}
+    <br>
+    {{ form_widget(form.guardar) }}
+
+    {{ form_end(form) }}
+
+
+
+
+
+{% endblock %}

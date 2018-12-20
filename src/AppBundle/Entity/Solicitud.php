@@ -2,11 +2,10 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Solicitud
+ * solicitud
  *
  * @ORM\Table(name="solicitud")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SolicitudRepository")
@@ -37,34 +36,64 @@ class Solicitud
     private $descripcion;
 
     /**
-     * @var date
+     * @var \DateTime
      *
-     * @ORM\Column(name="fecha", type="date", length=255)
+     * @ORM\Column(name="fecha", type="date")
      */
+
     private $fecha;
 
     /**
      * @var Usuario
+     *
+     *
      * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="misSolicitudes")
      */
+
     private $usuarioSolicitante;
 
+    /**
+     * @var Usuario
+     *
+     *
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="misAsignaciones")
+     */
 
+    private $usuarioAsignado;
 
     /**
-     * @var int
+     * @var Estatus
      *
-     * @ORM\Column(name="usuario_asignado_id", type="integer")
      *
+     * @ORM\ManyToOne(targetEntity="Estatus", inversedBy="Estado")
      */
-    private $usuarioasignado;
+
+    private $estadoSolicitud;
 
     /**
-     * @var string
+     * @var CampoAfin
      *
-     * @ORM\Column(name="campo_afin", type="string", length=255)
+     *
+     * @ORM\ManyToOne(targetEntity="CampoAfin", inversedBy="camposAfines")
      */
-    private $campo_afin;
+
+    private $campoAfine;
+
+    /*
+     * @var
+     * @ORM\OneToMany(targetEntity="Solicitud", mappedBy="solicitud")
+     */
+
+    private $misSolicitudes;
+
+    /*
+     * @var
+     */
+
+    private $solicitud;
+
+
+
 
 
     /**
@@ -128,7 +157,7 @@ class Solicitud
     /**
      * Set fecha
      *
-     * @param date $fecha
+     * @param \DateTime $fecha
      *
      * @return solicitud
      */
@@ -142,7 +171,7 @@ class Solicitud
     /**
      * Get fecha
      *
-     * @return date
+     * @return \DateTime
      */
     public function getFecha()
     {
@@ -150,99 +179,99 @@ class Solicitud
     }
 
     /**
-     * Set usuariosolicitante
+     * Set usuarioSolicitante
      *
-     * @param integer $usuariosolicitante
+     * @param string $usuarioSolicitante
      *
-     * @return solicitud
+     * @return usuarioSolicitante
      */
-    public function setUsuariosolicitante($usuariosolicitante)
+    public function setusuarioSolicitante($usuarioSolicitante)
     {
-        $this->usuariosolicitante = $usuariosolicitante;
+        $this->usuarioSolicitante = $usuarioSolicitante;
 
         return $this;
     }
 
     /**
-     * Get usuariosolicitante
+     * Get usuarioSolicitante
      *
-     * @return int
+     * @return \string
      */
-    public function getUsuariosolicitante()
+    public function getusuarioSolicitante()
     {
-        return $this->usuariosolicitante;
-    }
-
-    /**
-     * Set estado
-     *
-     * @param string $estado
-     *
-     * @return solicitud
-     */
-    public function setEstado($estado)
-    {
-        $this->estado = $estado;
-
-        return $this;
-    }
-
-    /**
-     * Get estado
-     *
-     * @return string
-     */
-    public function getEstado()
-    {
-        return $this->estado;
+        return $this->usuarioSolicitante;
     }
 
     /**
      * Set usuarioAsignado
      *
-     * @param integer $usuarioAsignado
+     * @param string $usuarioAsignado
      *
-     * @return solicitud
+     * @return usuarioAsignado
      */
-    public function setUsuarioAsigId($usuarioasignado)
+    public function setusuarioAsignado($usuarioAsignado)
     {
-        $this->usuario_asig_id = $usuarioasignado;
+        $this->usuarioAsignado = $usuarioAsignado;
 
         return $this;
     }
 
     /**
-     * Get usuarioAsigId
+     * Get usuarioAsignado
      *
-     * @return int
+     * @return \string
      */
-    public function getUsuarioasignado()
+    public function getusuarioAsignado()
     {
-        return $this->usuarioasignado;
+        return $this->usuarioAsignado;
     }
 
     /**
-     * Set campoAfin
+     * Set estadoSolicitud
      *
-     * @param string $campoAfin
+     * @param string $estadoSolicitud
      *
-     * @return solicitud
+     * @return estadoSolicitud
      */
-    public function setCampoAfin($campo_afin)
+    public function setestadoSolicitud($estadoSolicitud)
     {
-        $this->campo_afin = $campo_afin;
+        $this->estadoSolicitud = $estadoSolicitud;
 
         return $this;
     }
 
     /**
-     * Get campoAfin
+     * Get estadoSolicitud
      *
-     * @return string
+     * @return \string
      */
-    public function getCampo_afin()
+    public function getestadoSolicitud()
     {
-        return $this->campo_afin;
+        return $this->estadoSolicitud;
+    }
+
+    /**
+     * Set campoAfine
+     *
+     * @param string $campoAfine
+     *
+     * @return campoAfine
+     */
+    public function setcampoAfine($campoAfine)
+    {
+        $this->campoAfine = $campoAfine;
+
+        return $this;
+    }
+
+    /**
+     * Get campoAfine
+     *
+     * @return \string
+     */
+    public function getcampoAfine()
+    {
+        return $this->campoAfine;
     }
 }
 

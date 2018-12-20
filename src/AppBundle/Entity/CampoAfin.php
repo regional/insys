@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CampoAfin
+ * campo_afin
  *
  * @ORM\Table(name="campo_afin")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CampoAfinRepository")
@@ -28,6 +28,17 @@ class CampoAfin
      */
     private $nombre;
 
+    /*
+     * @var
+     * @ORM\OneToMany(targetEntity="Solicitud", mappedBy="campoAfine")
+     */
+
+    private $camposAfines;
+
+
+
+
+
 
     /**
      * Get id
@@ -44,7 +55,7 @@ class CampoAfin
      *
      * @param string $nombre
      *
-     * @return campoAfin
+     * @return campo_afin
      */
     public function setNombre($nombre)
     {
@@ -54,7 +65,7 @@ class CampoAfin
     }
 
     /**
-     * Get nombrefin
+     * Get nombre
      *
      * @return string
      */

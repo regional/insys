@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Usuario;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,14 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="inicio")
+     * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/Principal.html.twig', [
 
-        ]);
+
+        // replace this example code with whatever you need
+        return $this->render('@App/Default/home.html.twig');
     }
 
 
